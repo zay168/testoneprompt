@@ -273,6 +273,7 @@
             z-index: 9999;
             mix-blend-mode: difference;
             transform: translate(-50%, -50%);
+            display: none;
         }
 
         .target-cursor-dot {
@@ -895,7 +896,7 @@
             <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-2xl font-semibold mb-6">Discutons de votre projeth3>
+                    <h3 class="text-2xl font-semibold mb-6">Discutons de votre projet</h3>
                     <p class="text-gray-400 mb-8">
                         Je suis toujours intéressé par de nouvelles opportunités et collaborations. 
                         N'hésitez pas à me contacter pour discuter de vos idées ou projets.
@@ -1176,6 +1177,8 @@
 
         // ----- Target Cursor for project cards -----
         const cursor = document.getElementById('targetCursor');
+        const projectsSection = document.getElementById('projects');
+        const projectCards = projectsSection.querySelectorAll('.project-card');
         const corners = cursor.querySelectorAll('.target-cursor-corner');
         const spinDuration = 2;
         const borderWidth = 3;
@@ -1188,7 +1191,9 @@
             gsap.to(cursor, { x, y, duration: 0.1, ease: 'power3.out' });
         }
 
-        window.addEventListener('mousemove', e => moveCursor(e.clientX, e.clientY));
+        function onMouseMove(e) {
+            moveCursor(e.clientX, e.clientY);
+        }
 
         function updateCorners(card, mouseX, mouseY) {
             const rect = card.getBoundingClientRect();
@@ -1220,7 +1225,7 @@
             });
         }
 
-        document.querySelectorAll('.project-card').forEach(card => {
+        projectCards.forEach(card => {
             card.addEventListener('mouseenter', e => {
                 spinTl.pause();
                 gsap.set(cursor, { rotation: 0 });
@@ -1237,8 +1242,31 @@
             });
         });
 
-        document.body.style.cursor = 'none';
-        resetCorners();
+        function activateTargetCursor() {
+            cursor.style.display = 'block';
+            document.body.style.cursor = 'none';
+            window.addEventListener('mousemove', onMouseMove);
+            resetCorners();
+        }
+
+        function deactivateTargetCursor() {
+            cursor.style.display = 'none';
+            document.body.style.cursor = '';
+            window.removeEventListener('mousemove', onMouseMove);
+            spinTl.play();
+        }
+
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    activateTargetCursor();
+                } else {
+                    deactivateTargetCursor();
+                }
+            });
+        });
+
+        sectionObserver.observe(projectsSection);
     </script>
 </body>
 </html>

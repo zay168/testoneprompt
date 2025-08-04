@@ -1256,17 +1256,25 @@
             spinTl.play();
         }
 
-        const sectionObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    activateTargetCursor();
-                } else {
-                    deactivateTargetCursor();
-                }
-            });
-        });
+        const navbar = document.getElementById('navbar');
+        let cursorActive = false;
 
-        sectionObserver.observe(projectsSection);
+        function handleTargetCursor() {
+            const rect = projectsSection.getBoundingClientRect();
+            const navHeight = navbar.offsetHeight;
+            const shouldActivate = rect.top <= navHeight && rect.bottom >= 0;
+
+            if (shouldActivate && !cursorActive) {
+                activateTargetCursor();
+                cursorActive = true;
+            } else if (!shouldActivate && cursorActive) {
+                deactivateTargetCursor();
+                cursorActive = false;
+            }
+        }
+
+        window.addEventListener('scroll', handleTargetCursor);
+        handleTargetCursor();
     </script>
 </body>
 </html>

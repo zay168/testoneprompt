@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Développeur Web Créatif</title>
+    <title data-i18n="title">Portfolio - Développeur Web Créatif</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
@@ -340,7 +340,7 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-circle"></div>
-            <p class="text-white text-lg">Chargement...</p>
+            <p class="text-white text-lg" data-i18n="loading">Chargement...</p>
         </div>
     </div>
 
@@ -360,21 +360,25 @@
     <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                <div class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="nav.brand">
                     Portfolio
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-item text-gray-300 hover:text-white transition-colors">Accueil</a>
-                    <a href="#about" class="nav-item text-gray-300 hover:text-white transition-colors">À propos</a>
-                    <a href="#skills" class="nav-item text-gray-300 hover:text-white transition-colors">Compétences</a>
-                    <a href="#projects" class="nav-item text-gray-300 hover:text-white transition-colors">Projets</a>
-                    <a href="#experience" class="nav-item text-gray-300 hover:text-white transition-colors">Expérience</a>
-                    <a href="#contact" class="nav-item text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <a href="#home" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.home">Accueil</a>
+                    <a href="#about" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.about">À propos</a>
+                    <a href="#skills" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.skills">Compétences</a>
+                    <a href="#projects" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.projects">Projets</a>
+                    <a href="#experience" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.experience">Expérience</a>
+                    <a href="#contact" class="nav-item text-gray-300 hover:text-white transition-colors" data-i18n="nav.contact">Contact</a>
                 </div>
 
                 <div class="flex items-center space-x-4">
                     <div class="dark-mode-toggle" id="darkModeToggle"></div>
+                    <select id="languageSelect" class="bg-gray-800 text-white rounded px-2 py-1">
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
                     <button class="md:hidden text-white" id="mobileMenuBtn">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -386,12 +390,12 @@
     <!-- Mobile Menu -->
     <div class="fixed inset-0 bg-gray-900/95 z-40 transform translate-x-full transition-transform duration-300" id="mobileMenu">
         <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#home" class="text-2xl text-gray-300 hover:text-white mobile-link">Accueil</a>
-            <a href="#about" class="text-2xl text-gray-300 hover:text-white mobile-link">À propos</a>
-            <a href="#skills" class="text-2xl text-gray-300 hover:text-white mobile-link">Compétences</a>
-            <a href="#projects" class="text-2xl text-gray-300 hover:text-white mobile-link">Projets</a>
-            <a href="#experience" class="text-2xl text-gray-300 hover:text-white mobile-link">Expérience</a>
-            <a href="#contact" class="text-2xl text-gray-300 hover:text-white mobile-link">Contact</a>
+            <a href="#home" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.home">Accueil</a>
+            <a href="#about" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.about">À propos</a>
+            <a href="#skills" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.skills">Compétences</a>
+            <a href="#projects" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.projects">Projets</a>
+            <a href="#experience" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.experience">Expérience</a>
+            <a href="#contact" class="text-2xl text-gray-300 hover:text-white mobile-link" data-i18n="nav.contact">Contact</a>
         </div>
     </div>
 
@@ -400,16 +404,17 @@
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="text-animation">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">
-                    Bonjour, je suis <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600">Alexandre</span>
+                    <span data-i18n="hero.intro">Bonjour, je suis</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600" data-i18n="hero.name">Alexandre</span>
                 </h1>
-                <p class="text-xl md:text-2xl mb-8 text-gray-200">
+                <p class="text-xl md:text-2xl mb-8 text-gray-200" data-i18n="hero.description">
                     Développeur Web Full Stack & Designer UI/UX
                 </p>
                 <div class="flex justify-center space-x-4 mb-12">
-                    <a href="#contact" class="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
+                    <a href="#contact" class="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105" data-i18n="hero.contactBtn">
                         Me contacter
                     </a>
-                    <a href="#projects" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105">
+                    <a href="#projects" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105" data-i18n="hero.projectsBtn">
                         Voir mes projets
                     </a>
                 </div>
@@ -439,7 +444,7 @@
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="about.title">
                 À propos de moi
             </h2>
             
@@ -449,42 +454,42 @@
                     <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-purple-500 to-pink-500 p-6 rounded-lg shadow-xl">
                         <div class="text-white">
                             <p class="text-3xl font-bold">5+</p>
-                            <p class="text-sm">Années d'expérience</p>
+                            <p class="text-sm" data-i18n="about.experienceYears">Années d'expérience</p>
                         </div>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-2xl font-semibold mb-4">Développeur passionné et créatif</h3>
-                    <p class="text-gray-300 mb-6">
-                        Je suis un développeur web full stack passionné par la création d'applications web modernes et performantes. 
+                    <h3 class="text-2xl font-semibold mb-4" data-i18n="about.subtitle">Développeur passionné et créatif</h3>
+                    <p class="text-gray-300 mb-6" data-i18n="about.p1">
+                        Je suis un développeur web full stack passionné par la création d'applications web modernes et performantes.
                         Avec une solide expérience dans les technologies frontend et backend, je transforme les idées en solutions digitales innovantes.
                     </p>
-                    <p class="text-gray-300 mb-6">
-                        Mon approche combine une expertise technique approfondie avec un sens aigu du design et de l'expérience utilisateur. 
+                    <p class="text-gray-300 mb-6" data-i18n="about.p2">
+                        Mon approche combine une expertise technique approfondie avec un sens aigu du design et de l'expérience utilisateur.
                         Je crois que le meilleur code est non seulement fonctionnel, mais aussi élégant et maintenable.
                     </p>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-gray-800 p-4 rounded-lg">
                             <i class="fas fa-code text-purple-400 text-2xl mb-2"></i>
-                            <h4 class="font-semibold">Code Propre</h4>
-                            <p class="text-sm text-gray-400">Code maintenable et bien documenté</p>
+                            <h4 class="font-semibold" data-i18n="about.features.cleanCode.title">Code Propre</h4>
+                            <p class="text-sm text-gray-400" data-i18n="about.features.cleanCode.desc">Code maintenable et bien documenté</p>
                         </div>
                         <div class="bg-gray-800 p-4 rounded-lg">
                             <i class="fas fa-mobile-alt text-pink-400 text-2xl mb-2"></i>
-                            <h4 class="font-semibold">Responsive</h4>
-                            <p class="text-sm text-gray-400">Design adapté à tous les appareils</p>
+                            <h4 class="font-semibold" data-i18n="about.features.responsive.title">Responsive</h4>
+                            <p class="text-sm text-gray-400" data-i18n="about.features.responsive.desc">Design adapté à tous les appareils</p>
                         </div>
                         <div class="bg-gray-800 p-4 rounded-lg">
                             <i class="fas fa-rocket text-blue-400 text-2xl mb-2"></i>
-                            <h4 class="font-semibold">Performance</h4>
-                            <p class="text-sm text-gray-400">Applications rapides et optimisées</p>
+                            <h4 class="font-semibold" data-i18n="about.features.performance.title">Performance</h4>
+                            <p class="text-sm text-gray-400" data-i18n="about.features.performance.desc">Applications rapides et optimisées</p>
                         </div>
                         <div class="bg-gray-800 p-4 rounded-lg">
                             <i class="fas fa-users text-green-400 text-2xl mb-2"></i>
-                            <h4 class="font-semibold">Collaboration</h4>
-                            <p class="text-sm text-gray-400">Travail d'équipe efficace</p>
+                            <h4 class="font-semibold" data-i18n="about.features.collaboration.title">Collaboration</h4>
+                            <p class="text-sm text-gray-400" data-i18n="about.features.collaboration.desc">Travail d'équipe efficace</p>
                         </div>
                     </div>
                 </div>
@@ -495,7 +500,7 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20 bg-gray-800">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="skills.title">
                 Compétences Techniques
             </h2>
             
@@ -504,7 +509,7 @@
                 <div class="skill-card p-8 rounded-xl">
                     <div class="text-center mb-6">
                         <i class="fas fa-laptop-code text-5xl text-purple-400 mb-4"></i>
-                        <h3 class="text-2xl font-semibold">Frontend</h3>
+                        <h3 class="text-2xl font-semibold" data-i18n="skills.frontend">Frontend</h3>
                     </div>
                     <div class="space-y-4">
                         <div>
@@ -550,7 +555,7 @@
                 <div class="skill-card p-8 rounded-xl">
                     <div class="text-center mb-6">
                         <i class="fas fa-server text-5xl text-blue-400 mb-4"></i>
-                        <h3 class="text-2xl font-semibold">Backend</h3>
+                        <h3 class="text-2xl font-semibold" data-i18n="skills.backend">Backend</h3>
                     </div>
                     <div class="space-y-4">
                         <div>
@@ -596,7 +601,7 @@
                 <div class="skill-card p-8 rounded-xl">
                     <div class="text-center mb-6">
                         <i class="fas fa-tools text-5xl text-green-400 mb-4"></i>
-                        <h3 class="text-2xl font-semibold">Outils & Autres</h3>
+                        <h3 class="text-2xl font-semibold" data-i18n="skills.tools">Outils & Autres</h3>
                     </div>
                     <div class="space-y-4">
                         <div>
@@ -644,22 +649,22 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="projects.title">
                 Mes Projets
             </h2>
             
             <!-- Filter Buttons -->
             <div class="flex justify-center mb-12 space-x-4">
-                <button class="filter-btn active px-6 py-2 rounded-full bg-purple-600 text-white transition-all" data-filter="all">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-purple-600 text-white transition-all" data-filter="all" data-i18n="projects.filter.all">
                     Tous
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="web">
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="web" data-i18n="projects.filter.web">
                     Web
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="mobile">
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="mobile" data-i18n="projects.filter.mobile">
                     Mobile
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="design">
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all" data-filter="design" data-i18n="projects.filter.design">
                     Design
                 </button>
             </div>
@@ -670,8 +675,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="web">
                     <img src="https://picsum.photos/seed/project1/400/300" alt="Project 1" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
-                        <p class="text-gray-400 mb-4">Plateforme e-commerce moderne avec React et Node.js</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project1.title">E-commerce Platform</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project1.desc">Plateforme e-commerce moderne avec React et Node.js</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm">React</span>
                             <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm">Node.js</span>
@@ -680,7 +685,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -694,8 +699,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="mobile">
                     <img src="https://picsum.photos/seed/project2/400/300" alt="Project 2" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Fitness App</h3>
-                        <p class="text-gray-400 mb-4">Application mobile de suivi fitness avec React Native</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project2.title">Fitness App</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project2.desc">Application mobile de suivi fitness avec React Native</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-cyan-600/20 text-cyan-400 rounded-full text-sm">React Native</span>
                             <span class="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm">Firebase</span>
@@ -704,7 +709,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -718,8 +723,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="design">
                     <img src="https://picsum.photos/seed/project3/400/300" alt="Project 3" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Dashboard Analytics</h3>
-                        <p class="text-gray-400 mb-4">Dashboard d'analyse de données avec D3.js</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project3.title">Dashboard Analytics</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project3.desc">Dashboard d'analyse de données avec D3.js</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-orange-600/20 text-orange-400 rounded-full text-sm">D3.js</span>
                             <span class="px-3 py-1 bg-yellow-600/20 text-yellow-400 rounded-full text-sm">Vue.js</span>
@@ -728,7 +733,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -742,8 +747,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="web">
                     <img src="https://picsum.photos/seed/project4/400/300" alt="Project 4" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Social Media Platform</h3>
-                        <p class="text-gray-400 mb-4">Réseau social avec fonctionnalités en temps réel</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project4.title">Social Media Platform</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project4.desc">Réseau social avec fonctionnalités en temps réel</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-indigo-600/20 text-indigo-400 rounded-full text-sm">Next.js</span>
                             <span class="px-3 py-1 bg-green-600/20 text-green-400 rounded-full text-sm">GraphQL</span>
@@ -752,7 +757,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -766,8 +771,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="mobile">
                     <img src="https://picsum.photos/seed/project5/400/300" alt="Project 5" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Weather App</h3>
-                        <p class="text-gray-400 mb-4">Application météo avec prédictions et animations</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project5.title">Weather App</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project5.desc">Application météo avec prédictions et animations</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm">Flutter</span>
                             <span class="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm">API</span>
@@ -776,7 +781,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -790,8 +795,8 @@
                 <div class="project-card rounded-lg overflow-hidden" data-category="design">
                     <img src="https://picsum.photos/seed/project6/400/300" alt="Project 6" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Portfolio Design</h3>
-                        <p class="text-gray-400 mb-4">Design UI/UX pour portfolio créatif</p>
+                        <h3 class="text-xl font-semibold mb-2" data-i18n="projects.project6.title">Portfolio Design</h3>
+                        <p class="text-gray-400 mb-4" data-i18n="projects.project6.desc">Design UI/UX pour portfolio créatif</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-pink-600/20 text-pink-400 rounded-full text-sm">Figma</span>
                             <span class="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm">Adobe XD</span>
@@ -800,7 +805,7 @@
                     </div>
                     <div class="project-overlay">
                         <div class="text-center">
-                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2">
+                            <a href="#" class="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all inline-block mb-2" data-i18n="projects.view">
                                 Voir le projet
                             </a>
                             <a href="#" class="text-white hover:text-gray-300 block">
@@ -816,7 +821,7 @@
     <!-- Experience Section -->
     <section id="experience" class="py-20 bg-gray-800">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="experience.title">
                 Mon Parcours
             </h2>
             
@@ -828,10 +833,10 @@
                     <div class="timeline-dot"></div>
                     <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
                         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-semibold mb-2">Senior Full Stack Developer</h3>
-                            <p class="text-purple-400 mb-2">Tech Innovations Inc. • 2021 - Présent</p>
-                            <p class="text-gray-400">
-                                Développement d'applications web complexes, architecture microservices, 
+                            <h3 class="text-xl font-semibold mb-2" data-i18n="experience.item1.role">Senior Full Stack Developer</h3>
+                            <p class="text-purple-400 mb-2" data-i18n="experience.item1.company">Tech Innovations Inc. • 2021 - Présent</p>
+                            <p class="text-gray-400" data-i18n="experience.item1.desc">
+                                Développement d'applications web complexes, architecture microservices,
                                 mentorat d'équipe junior, optimisation des performances.
                             </p>
                         </div>
@@ -843,10 +848,10 @@
                     <div class="timeline-dot"></div>
                     <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8 md:ml-auto">
                         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-semibold mb-2">Frontend Developer</h3>
-                            <p class="text-blue-400 mb-2">Digital Agency Pro • 2019 - 2021</p>
-                            <p class="text-gray-400">
-                                Création d'interfaces utilisateur modernes, développement React, 
+                            <h3 class="text-xl font-semibold mb-2" data-i18n="experience.item2.role">Frontend Developer</h3>
+                            <p class="text-blue-400 mb-2" data-i18n="experience.item2.company">Digital Agency Pro • 2019 - 2021</p>
+                            <p class="text-gray-400" data-i18n="experience.item2.desc">
+                                Création d'interfaces utilisateur modernes, développement React,
                                 collaboration avec les designers, intégration d'API.
                             </p>
                         </div>
@@ -858,10 +863,10 @@
                     <div class="timeline-dot"></div>
                     <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
                         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-semibold mb-2">Web Developer Junior</h3>
-                            <p class="text-green-400 mb-2">StartupXYZ • 2018 - 2019</p>
-                            <p class="text-gray-400">
-                                Développement de sites web, maintenance de code existant, 
+                            <h3 class="text-xl font-semibold mb-2" data-i18n="experience.item3.role">Web Developer Junior</h3>
+                            <p class="text-green-400 mb-2" data-i18n="experience.item3.company">StartupXYZ • 2018 - 2019</p>
+                            <p class="text-gray-400" data-i18n="experience.item3.desc">
+                                Développement de sites web, maintenance de code existant,
                                 apprentissage des bonnes pratiques, participation aux réunions d'équipe.
                             </p>
                         </div>
@@ -873,10 +878,10 @@
                     <div class="timeline-dot"></div>
                     <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8 md:ml-auto">
                         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                            <h3 class="text-xl font-semibold mb-2">Licence Informatique</h3>
-                            <p class="text-pink-400 mb-2">Université Paris • 2015 - 2018</p>
-                            <p class="text-gray-400">
-                                Études en développement web, algorithmes, bases de données, 
+                            <h3 class="text-xl font-semibold mb-2" data-i18n="experience.item4.role">Licence Informatique</h3>
+                            <p class="text-pink-400 mb-2" data-i18n="experience.item4.company">Université Paris • 2015 - 2018</p>
+                            <p class="text-gray-400" data-i18n="experience.item4.desc">
+                                Études en développement web, algorithmes, bases de données,
                                 projets pratiques et stage de fin d'études.
                             </p>
                         </div>
@@ -889,16 +894,16 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" data-i18n="contact.title">
                 Contactez-moi
             </h2>
             
             <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-2xl font-semibold mb-6">Discutons de votre projet</h3>
-                    <p class="text-gray-400 mb-8">
-                        Je suis toujours intéressé par de nouvelles opportunités et collaborations. 
+                    <h3 class="text-2xl font-semibold mb-6" data-i18n="contact.subtitle">Discutons de votre projet</h3>
+                    <p class="text-gray-400 mb-8" data-i18n="contact.p">
+                        Je suis toujours intéressé par de nouvelles opportunités et collaborations.
                         N'hésitez pas à me contacter pour discuter de vos idées ou projets.
                     </p>
                     
@@ -908,7 +913,7 @@
                                 <i class="fas fa-envelope text-purple-400 text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-gray-400">Email</p>
+                                <p class="text-gray-400" data-i18n="contact.labels.email">Email</p>
                                 <p class="text-white">alexandre@portfolio.com</p>
                             </div>
                         </div>
@@ -918,7 +923,7 @@
                                 <i class="fas fa-phone text-blue-400 text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-gray-400">Téléphone</p>
+                                <p class="text-gray-400" data-i18n="contact.labels.phone">Téléphone</p>
                                 <p class="text-white">+33 6 12 34 56 78</p>
                             </div>
                         </div>
@@ -928,14 +933,14 @@
                                 <i class="fas fa-map-marker-alt text-green-400 text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-gray-400">Localisation</p>
+                                <p class="text-gray-400" data-i18n="contact.labels.location">Localisation</p>
                                 <p class="text-white">Paris, France</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="mt-8">
-                        <h4 class="text-lg font-semibold mb-4">Suivez-moi</h4>
+                        <h4 class="text-lg font-semibold mb-4" data-i18n="contact.follow">Suivez-moi</h4>
                         <div class="flex space-x-4">
                             <a href="#" class="bg-gray-800 p-3 rounded-lg hover:bg-purple-600 transition-colors">
                                 <i class="fab fa-github text-xl"></i>
@@ -957,30 +962,30 @@
                 <div>
                     <form id="contactForm" class="space-y-6">
                         <div>
-                            <label class="block text-gray-400 mb-2">Nom</label>
+                            <label class="block text-gray-400 mb-2" data-i18n="contact.fields.name">Nom</label>
                             <input type="text" class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none" required>
                         </div>
-                        
+
                         <div>
-                            <label class="block text-gray-400 mb-2">Email</label>
+                            <label class="block text-gray-400 mb-2" data-i18n="contact.fields.email">Email</label>
                             <input type="email" class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none" required>
                         </div>
-                        
+
                         <div>
-                            <label class="block text-gray-400 mb-2">Sujet</label>
+                            <label class="block text-gray-400 mb-2" data-i18n="contact.fields.subject">Sujet</label>
                             <input type="text" class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none" required>
                         </div>
-                        
+
                         <div>
-                            <label class="block text-gray-400 mb-2">Message</label>
+                            <label class="block text-gray-400 mb-2" data-i18n="contact.fields.message">Message</label>
                             <textarea rows="5" class="form-input w-full px-4 py-3 rounded-lg text-white focus:outline-none resize-none" required></textarea>
                         </div>
-                        
-                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105">
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105" data-i18n="contact.send">
                             Envoyer le message
                         </button>
                     </form>
-                    
+
                     <div id="formMessage" class="mt-4 p-4 rounded-lg hidden"></div>
                 </div>
             </div>
@@ -990,7 +995,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 py-8 border-t border-gray-700">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="footer.text">
                 © 2024 Alexandre. Tous droits réservés. Conçu avec <i class="fas fa-heart text-red-500"></i> et beaucoup de café.
             </p>
         </div>
@@ -1002,6 +1007,41 @@
     </button>
 
     <script>
+        const languageSelect = document.getElementById('languageSelect');
+        let translations = {};
+
+        async function loadLanguage(lang) {
+            try {
+                const res = await fetch(`lang/${lang}.json`);
+                translations = await res.json();
+                document.documentElement.setAttribute('lang', lang);
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const keys = el.getAttribute('data-i18n').split('.');
+                    let text = translations;
+                    keys.forEach(k => { if (text) text = text[k]; });
+                    if (text !== undefined) {
+                        if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.placeholder) {
+                            el.placeholder = text;
+                        } else {
+                            el.innerHTML = text;
+                        }
+                    }
+                });
+            } catch (err) {
+                console.error('Error loading language', err);
+            }
+        }
+
+        const defaultLang = localStorage.getItem('language') || 'fr';
+        languageSelect.value = defaultLang;
+        loadLanguage(defaultLang);
+
+        languageSelect.addEventListener('change', e => {
+            const lang = e.target.value;
+            localStorage.setItem('language', lang);
+            loadLanguage(lang);
+        });
+
         // Loader
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -1094,8 +1134,8 @@
             // Simulate form submission
             formMessage.classList.remove('hidden');
             formMessage.classList.add('bg-green-600/20', 'text-green-400', 'border', 'border-green-600');
-            formMessage.textContent = 'Message envoyé avec succès ! Je vous répondrai dès que possible.';
-            
+            formMessage.textContent = translations.contact.formSuccess;
+
             contactForm.reset();
             
             setTimeout(() => {

@@ -1,0 +1,130 @@
+{
+  "title": "Portfolio - Développeur Web Créatif",
+  "loading": "Chargement...",
+  "nav": {
+    "brand": "Portfolio",
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "experience": "Expérience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "intro": "Bonjour, je suis",
+    "name": "Alexandre",
+    "description": "Développeur Web Full Stack & Designer UI/UX",
+    "contactBtn": "Me contacter",
+    "projectsBtn": "Voir mes projets"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "experienceYears": "Années d'expérience",
+    "subtitle": "Développeur passionné et créatif",
+    "p1": "Je suis un développeur web full stack passionné par la création d'applications web modernes et performantes. Avec une solide expérience dans les technologies frontend et backend, je transforme les idées en solutions digitales innovantes.",
+    "p2": "Mon approche combine une expertise technique approfondie avec un sens aigu du design et de l'expérience utilisateur. Je crois que le meilleur code est non seulement fonctionnel, mais aussi élégant et maintenable.",
+    "features": {
+      "cleanCode": {
+        "title": "Code Propre",
+        "desc": "Code maintenable et bien documenté"
+      },
+      "responsive": {
+        "title": "Responsive",
+        "desc": "Design adapté à tous les appareils"
+      },
+      "performance": {
+        "title": "Performance",
+        "desc": "Applications rapides et optimisées"
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "desc": "Travail d'équipe efficace"
+      }
+    }
+  },
+  "skills": {
+    "title": "Compétences Techniques",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Outils & Autres"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "filter": {
+      "all": "Tous",
+      "web": "Web",
+      "mobile": "Mobile",
+      "design": "Design"
+    },
+    "view": "Voir le projet",
+    "project1": {
+      "title": "E-commerce Platform",
+      "desc": "Plateforme e-commerce moderne avec React et Node.js"
+    },
+    "project2": {
+      "title": "Fitness App",
+      "desc": "Application mobile de suivi fitness avec React Native"
+    },
+    "project3": {
+      "title": "Dashboard Analytics",
+      "desc": "Dashboard d'analyse de données avec D3.js"
+    },
+    "project4": {
+      "title": "Social Media Platform",
+      "desc": "Réseau social avec fonctionnalités en temps réel"
+    },
+    "project5": {
+      "title": "Weather App",
+      "desc": "Application météo avec prédictions et animations"
+    },
+    "project6": {
+      "title": "Portfolio Design",
+      "desc": "Design UI/UX pour portfolio créatif"
+    }
+  },
+  "experience": {
+    "title": "Mon Parcours",
+    "item1": {
+      "role": "Senior Full Stack Developer",
+      "company": "Tech Innovations Inc. • 2021 - Présent",
+      "desc": "Développement d'applications web complexes, architecture microservices, mentorat d'équipe junior, optimisation des performances."
+    },
+    "item2": {
+      "role": "Frontend Developer",
+      "company": "Digital Agency Pro • 2019 - 2021",
+      "desc": "Création d'interfaces utilisateur modernes, développement React, collaboration avec les designers, intégration d'API."
+    },
+    "item3": {
+      "role": "Web Developer Junior",
+      "company": "StartupXYZ • 2018 - 2019",
+      "desc": "Développement de sites web, maintenance de code existant, apprentissage des bonnes pratiques, participation aux réunions d'équipe."
+    },
+    "item4": {
+      "role": "Licence Informatique",
+      "company": "Université Paris • 2015 - 2018",
+      "desc": "Études en développement web, algorithmes, bases de données, projets pratiques et stage de fin d'études."
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Discutons de votre projet",
+    "p": "Je suis toujours intéressé par de nouvelles opportunités et collaborations. N'hésitez pas à me contacter pour discuter de vos idées ou projets.",
+    "labels": {
+      "email": "Email",
+      "phone": "Téléphone",
+      "location": "Localisation"
+    },
+    "fields": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message"
+    },
+    "send": "Envoyer le message",
+    "follow": "Suivez-moi",
+    "formSuccess": "Message envoyé avec succès ! Je vous répondrai dès que possible."
+  },
+  "footer": {
+    "text": "© 2024 Alexandre. Tous droits réservés. Conçu avec <i class=\"fas fa-heart text-red-500\"></i> et beaucoup de café."
+  }
+}

@@ -335,7 +335,8 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin></script>
     <script src="js/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <!-- Fuse.js for fuzzy search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1365,6 +1366,10 @@
         initSearch();
 
         function initSearch() {
+            if (typeof Fuse !== 'function') {
+                console.error('Fuse.js failed to load. Search disabled.');
+                return;
+            }
             const searchBtn = document.getElementById('searchBtn');
             const searchModal = document.getElementById('searchModal');
             const searchInput = document.getElementById('searchInput');

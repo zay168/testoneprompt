@@ -335,6 +335,7 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin></script>
     <script src="js/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -375,6 +376,7 @@
                 </div>
 
                 <div class="flex items-center space-x-4">
+                    <button id="searchBtn" class="text-white"><i class="fas fa-search"></i></button>
                     <div class="dark-mode-toggle" id="darkModeToggle"></div>
                     <select id="languageSelect" class="bg-gray-800 text-white rounded px-2 py-1">
                         <option value="fr">FR</option>
@@ -1008,6 +1010,14 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-black/50 hidden flex items-start justify-center pt-24">
+        <div class="bg-gray-800 p-4 rounded-lg w-full max-w-md">
+            <input id="searchInput" type="text" placeholder="Search..." class="w-full p-2 rounded mb-4 bg-gray-700 text-white" />
+            <ul id="searchResults" class="space-y-2"></ul>
+        </div>
+    </div>
+
     <script>
         const languageSelect = document.getElementById('languageSelect');
         let translations = {};
@@ -1350,6 +1360,84 @@
 
         window.addEventListener('scroll', handleTargetCursor);
         handleTargetCursor();
+
+        // Search functionality
+        initSearch();
+
+        function initSearch() {
+            const searchBtn = document.getElementById('searchBtn');
+            const searchModal = document.getElementById('searchModal');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const items = [];
+
+            document.querySelectorAll('section').forEach(section => {
+                const titleEl = section.querySelector('h1, h2, h3');
+                if (titleEl) {
+                    items.push({ id: section.id, title: titleEl.textContent.trim(), content: titleEl.textContent.trim() });
+                }
+            });
+
+            document.querySelectorAll('#projects .project-card').forEach((card, idx) => {
+                const titleEl = card.querySelector('h3');
+                const descEl = card.querySelector('p');
+                const id = `project-${idx}`;
+                card.setAttribute('id', id);
+                items.push({ id, title: titleEl ? titleEl.textContent.trim() : '', content: descEl ? descEl.textContent.trim() : '' });
+            });
+
+            const fuse = new Fuse(items, { keys: ['title', 'content'], threshold: 0.3 });
+
+            function openModal() {
+                searchModal.classList.remove('hidden');
+                searchInput.focus();
+            }
+
+            function closeModal() {
+                searchModal.classList.add('hidden');
+                searchInput.value = '';
+                searchResults.innerHTML = '';
+            }
+
+            searchBtn.addEventListener('click', openModal);
+
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    openModal();
+                } else if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            searchModal.addEventListener('click', (e) => {
+                if (e.target === searchModal) {
+                    closeModal();
+                }
+            });
+
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.trim();
+                if (!query) {
+                    searchResults.innerHTML = '';
+                    return;
+                }
+                const results = fuse.search(query);
+                searchResults.innerHTML = results.map(r =>
+                    `<li><button class="w-full text-left text-white hover:bg-gray-700 p-2 rounded" data-id="${r.item.id}">${r.item.title}</button></li>`
+                ).join('');
+            });
+
+            searchResults.addEventListener('click', (e) => {
+                if (e.target.matches('button[data-id]')) {
+                    const target = document.getElementById(e.target.dataset.id);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        closeModal();
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

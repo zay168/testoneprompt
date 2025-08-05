@@ -66,6 +66,35 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        
+        .shiny-text {
+            --base: var(--light);
+            --shine: rgba(255, 255, 255, 0.95);
+            background-image: linear-gradient(120deg,
+                var(--base) 0%,
+                var(--base) 45%,
+                var(--shine) 50%,
+                var(--base) 55%,
+                var(--base) 100%);
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            background-position: 200% 50%;
+            -webkit-background-clip: text;
+                    background-clip: text;
+            -webkit-text-fill-color: transparent;
+                    color: transparent;
+            display: inline-block;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 600;
+            white-space: nowrap;
+            animation: shine var(--speed,3s) linear infinite;
+            will-change: background-position;
+        }
+
+        @keyframes shine {
+            from { background-position: 200% 50%; }
+            to { background-position: 0% 50%; }
+        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -262,66 +291,6 @@
             transform: translateX(30px);
         }
 
-        /* Target Cursor styles */
-        .target-cursor-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        .target-cursor-dot {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            will-change: transform;
-        }
-
-        .target-cursor-corner {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 12px;
-            height: 12px;
-            border: 3px solid #fff;
-            will-change: transform;
-        }
-
-        .corner-tl {
-            transform: translate(-150%, -150%);
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .corner-tr {
-            transform: translate(50%, -150%);
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .corner-br {
-            transform: translate(50%, 50%);
-            border-left: none;
-            border-top: none;
-        }
-
-        .corner-bl {
-            transform: translate(-150%, 50%);
-            border-right: none;
-            border-top: none;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .timeline-line {
@@ -343,21 +312,13 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-circle"></div>
-            <p class="text-white text-lg" data-i18n="loading">Chargement...</p>
+            <p id="loaderMessage" class="shiny-text" style="--speed:3s;">Chargement des ressources</p>
+            <p id="loaderProgress" class="shiny-text" style="--speed:3s;">0%</p>
         </div>
     </div>
 
     <!-- Particles Background -->
     <div id="particles-js"></div>
-
-    <!-- Custom Target Cursor -->
-    <div class="target-cursor-wrapper" id="targetCursor" aria-hidden="true">
-        <div class="target-cursor-dot"></div>
-        <div class="target-cursor-corner corner-tl"></div>
-        <div class="target-cursor-corner corner-tr"></div>
-        <div class="target-cursor-corner corner-br"></div>
-        <div class="target-cursor-corner corner-bl"></div>
-    </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 transition-all duration-300" id="navbar">
@@ -1088,11 +1049,31 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Loader
+        // Loader with progress and messages
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1000);
+            const loader = document.getElementById('loader');
+            const progressEl = document.getElementById('loaderProgress');
+            const messageEl = document.getElementById('loaderMessage');
+            const messages = [
+                "Chargement des ressources",
+                "Optimisation du cache",
+                "Initialisation des modules",
+                "Démarrage de l'application"
+            ];
+            let progress = 0;
+            function updateLoader() {
+                progress += Math.floor(Math.random() * 10) + 5;
+                if (progress > 100) progress = 100;
+                progressEl.textContent = progress + "%";
+                const index = Math.min(Math.floor(progress / 25), messages.length - 1);
+                messageEl.textContent = messages[index];
+                if (progress < 100) {
+                    setTimeout(updateLoader, 300);
+                } else {
+                    setTimeout(() => loader.classList.add('hidden'), 500);
+                }
+            }
+            updateLoader();
         });
 
         // Mobile Menu
@@ -1260,107 +1241,6 @@
         }
 
         createParticles();
-
-        // ----- Target Cursor for project cards -----
-        const cursor = document.getElementById('targetCursor');
-        const projectsSection = document.getElementById('projects');
-        const projectCards = projectsSection.querySelectorAll('.project-card');
-        const corners = cursor.querySelectorAll('.target-cursor-corner');
-        const spinDuration = 2;
-        const borderWidth = 3;
-        const cornerSize = 12;
-
-        let spinTl = gsap.timeline({ repeat: -1 })
-            .to(cursor, { rotation: '+=360', duration: spinDuration, ease: 'none' });
-
-        function moveCursor(x, y) {
-            gsap.to(cursor, { x, y, duration: 0.1, ease: 'power3.out' });
-        }
-
-        function onMouseMove(e) {
-            moveCursor(e.clientX, e.clientY);
-        }
-
-        function updateCorners(card, mouseX, mouseY) {
-            const rect = card.getBoundingClientRect();
-            const cursorRect = cursor.getBoundingClientRect();
-            const cx = cursorRect.left + cursorRect.width / 2;
-            const cy = cursorRect.top + cursorRect.height / 2;
-
-            const offsets = [
-                { x: rect.left - cx - borderWidth, y: rect.top - cy - borderWidth },
-                { x: rect.right - cx + borderWidth - cornerSize, y: rect.top - cy - borderWidth },
-                { x: rect.right - cx + borderWidth - cornerSize, y: rect.bottom - cy + borderWidth - cornerSize },
-                { x: rect.left - cx - borderWidth, y: rect.bottom - cy + borderWidth - cornerSize },
-            ];
-
-            corners.forEach((corner, i) => {
-                gsap.to(corner, { x: offsets[i].x, y: offsets[i].y, duration: 0.2, ease: 'power2.out' });
-            });
-        }
-
-        function resetCorners() {
-            const positions = [
-                { x: -cornerSize * 1.5, y: -cornerSize * 1.5 },
-                { x: cornerSize * 0.5, y: -cornerSize * 1.5 },
-                { x: cornerSize * 0.5, y: cornerSize * 0.5 },
-                { x: -cornerSize * 1.5, y: cornerSize * 0.5 },
-            ];
-            corners.forEach((corner, i) => {
-                gsap.to(corner, { x: positions[i].x, y: positions[i].y, duration: 0.3, ease: 'power3.out' });
-            });
-        }
-
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', e => {
-                spinTl.pause();
-                gsap.set(cursor, { rotation: 0 });
-                updateCorners(card, e.clientX, e.clientY);
-            });
-
-            card.addEventListener('mousemove', e => {
-                updateCorners(card, e.clientX, e.clientY);
-            });
-
-            card.addEventListener('mouseleave', () => {
-                resetCorners();
-                spinTl.play();
-            });
-        });
-
-        function activateTargetCursor() {
-            cursor.style.display = 'block';
-            document.body.style.cursor = 'none';
-            window.addEventListener('mousemove', onMouseMove);
-            resetCorners();
-        }
-
-        function deactivateTargetCursor() {
-            cursor.style.display = 'none';
-            document.body.style.cursor = '';
-            window.removeEventListener('mousemove', onMouseMove);
-            spinTl.play();
-        }
-
-        const navbar = document.getElementById('navbar');
-        let cursorActive = false;
-
-        function handleTargetCursor() {
-            const rect = projectsSection.getBoundingClientRect();
-            const navHeight = navbar.offsetHeight;
-            const shouldActivate = rect.top <= navHeight && rect.bottom >= 0;
-
-            if (shouldActivate && !cursorActive) {
-                activateTargetCursor();
-                cursorActive = true;
-            } else if (!shouldActivate && cursorActive) {
-                deactivateTargetCursor();
-                cursorActive = false;
-            }
-        }
-
-        window.addEventListener('scroll', handleTargetCursor);
-        handleTargetCursor();
 
         // Search functionality
         initSearch();
